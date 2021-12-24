@@ -1,0 +1,14 @@
+<div>
+  <h3>Add User</h3>
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <mat-form-field>
+      <mat-label>Add user name</mat-label>
+      <input type="text" matInput placeholder="username" value="username" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Add Email</mat-label>
+      <input matInput placeholder="Email" value="email" required />
+    </mat-form-field>
+    <button type="submit" mat-button color="primary" [disabled]="!heroForm.form.valid">Submit</button>
+  </form>
+</div>
