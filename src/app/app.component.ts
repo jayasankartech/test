@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import * as htmlToImage from 'html-to-image';
 import * as html2canvas from 'html2canvas';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +11,7 @@ export class AppComponent {
   oddnumbers = [1, 3, 5];
   odd = false;
 
-  public takeshot() {
+  public takeshothtml2canvas() {
     let div = document.getElementById('photo');
 
     // Use the html2canvas
@@ -20,6 +20,21 @@ export class AppComponent {
     // to the output div
     html2canvas.default(div).then(function (canvas) {
       document.getElementById('output').appendChild(canvas);
+    });
+  }
+
+  public takeshothtml2image() {
+    let div = document.getElementById('photo');
+
+    // Use the html2canvas
+    // function to take a screenshot
+    // and append it
+    // to the output div
+    htmlToImage.toJpeg(div, { quality: 0.95 }).then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = dataUrl;
+      link.click();
     });
   }
 }
