@@ -20,6 +20,11 @@ export class AppComponent {
     // to the output div
     html2canvas.default(div).then(function (canvas) {
       document.getElementById('output').appendChild(canvas);
+      var img = canvas.toDataURL('image/jpeg');
+      var link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = img;
+      link.click();
     });
   }
 
@@ -30,6 +35,10 @@ export class AppComponent {
     // function to take a screenshot
     // and append it
     // to the output div
+    htmlToImage.toCanvas(div).then(function (canvas) {
+      document.getElementById('output').appendChild(canvas);
+    });
+
     htmlToImage.toJpeg(div, { quality: 0.95 }).then(function (dataUrl) {
       var link = document.createElement('a');
       link.download = 'my-image-name.jpeg';
